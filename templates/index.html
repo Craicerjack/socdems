@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block title %}SocDems Galway{% endblock %}
+
+{% block first_row %}
+<!-- USER PROFILE BLOCK -->
+<div class="col-sm-4 col-lg-4">
+    <div class="dash-unit">
+        <dtitle>My Profile</dtitle><hr>
+        <div class="thumbnail">
+            <img src="{{ url_for('static', filename='img/face80x80.jpg') }}" alt="Marcel Newman" class="img-circle">
+        </div><!-- /thumbnail -->
+        <h1>Your User Name</h1>
+        <h3>Other Info</h3><br>
+        <div class="info-user">
+            <span aria-hidden="true" class="fa fa-home"></span>
+            <span aria-hidden="true" class="fa fa-pencil-square-o"></span>
+            <span aria-hidden="true" class="fa fa-database"></span>
+            <span aria-hidden="true" class="fa fa-users"></span>
+        </div>
+    </div>
+</div>
+<!-- DONUT CHART BLOCK -->
+<div class="col-sm-4 col-lg-4">
+    <a href="{{ url_for('data') }}">
+    <div class="dash-unit">
+        <dtitle>Data Entry</dtitle><hr><br>
+        <div class="info-user">
+            <span aria-hidden="true" class="fa fa-pencil-square-o fa-3x"></span>
+        </div>
+        <h2>Enter Data</h2>
+    </div>
+    </a>
+</div>
+{% endblock %}
+{% block second_row %}
+<!-- DONUT CHART BLOCK -->
+<div class="col-sm-4 col-lg-4">
+    <div class="dash-unit">
+        <dtitle>Voters</dtitle><hr><br>
+        <div class="info-user">
+            <span aria-hidden="true" class="fa fa-database fa-3x"></span>
+        </div>
+        <h2>Voter Info</h2>
+    </div>
+</div>
+<div class="col-sm-4 col-lg-4">
+    <div class="dash-unit">
+        <dtitle>Volunteers</dtitle><hr><br>
+        <div class="info-user">
+            <span aria-hidden="true" class="fa fa-users fa-3x"></span>
+        </div>
+        <h2>Volunteers</h2>
+    </div>
+</div>
+{% endblock %}
+{% block third_row %}
+  <!-- TWITTER WIDGET BLOCK -->
+    <div class="col-sm-4 col-lg-4">
+        <div class="dash-unit">
+            <dtitle>Twitter Widget</dtitle>
+            <hr><br/>
+            <div class="info-user">
+                <span aria-hidden="true" class="li_megaphone fs2"></span>
+            </div>
+            <br>
+            <div id="jstwitter" class="clearfix">
+                <ul id="twitter_update_list"></ul>
+            </div>
+            <script src="http://twitter.com/javascripts/blogger.js"></script><!-- Script Needed to load the Tweets -->
+            <script src="http://api.twitter.com/1/statuses/user_timeline/wrapbootstrap.json?callback=twitterCallback2&amp;count=1"></script>
+            <!-- To show your tweets replace "wrapbootstrap", in the line above, with your user. -->
+            <div class="text">
+            <p><grey>Show your tweets here!</grey></p>
+            </div>
+        </div>
+    </div>
+     <div class="col-sm-4 col-lg-4">
+    <!-- LOCAL TIME BLOCK -->
+    <div class="half-unit">
+        <dtitle>Local Time</dtitle><hr>
+        <div class="clockcenter">
+            <digiclock>12:45:25</digiclock>
+        </div>
+    </div>
+    <!-- SERVER UPTIME -->
+    <div class="half-unit">
+        <dtitle>Server Uptime</dtitle><hr>
+        <div class="cont">
+            <p><img src="{{ url_for('static', filename='img/up.png') }}" alt=""> <bold>Up</bold> | 656ms.</p>
+        </div>
+    </div>
+    </div>
+
+  <!-- NOTIFICATIONS BLOCK -->
+    <div class="col-sm-4 col-lg-4">
+        <div class="dash-unit">
+            <dtitle>Notifications</dtitle>
+            <hr>
+            <div class="info-user">
+                <span aria-hidden="true" class="li_bubble fs2"></span>
+            </div>
+            <div class="cont">
+                <p><button class="btnnew noty" data-noty-options="{&quot;text&quot;:&quot;This is a success notification&quot;,&quot;layout&quot;:&quot;topRight&quot;,&quot;type&quot;:&quot;success&quot;}">Top Right</button></p>
+                <p><button class="btnnew noty" data-noty-options="{&quot;text&quot;:&quot;This is an informaton notification&quot;,&quot;layout&quot;:&quot;topLeft&quot;,&quot;type&quot;:&quot;information&quot;}">Top Left</button></p>
+                <p><button class="btnnew noty" data-noty-options="{&quot;text&quot;:&quot;This is an alert notification with fade effect.&quot;,&quot;layout&quot;:&quot;topCenter&quot;,&quot;type&quot;:&quot;alert&quot;,&quot;animateOpen&quot;: {&quot;opacity&quot;: &quot;show&quot;}}">Top Center (fade)</button></p>
+            </div>
+        </div>
+    </div>
+
+          <!-- ACCORDION BLOCK -->
+                <div class="col-sm-4 col-lg-4">
+                    <div class="dash-unit">
+                    <dtitle>Accordion</dtitle>
+                    <hr>
+                        <div class="accordion" id="accordion2">
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+                                    Collapsible Group Item #1
+                                    </a>
+                                </div>
+                                <div id="collapseOne" class="accordion-body collapse in">
+                                    <div class="accordion-inner">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+                                    Collapsible Group Item #2
+                                    </a>
+                                </div>
+                                <div id="collapseTwo" class="accordion-body collapse">
+                                    <div class="accordion-inner">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem.
+                                    </div>
+                                </div>
+                            </div>
+
+                             <div class="accordion-group">
+                                <div class="accordion-heading">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+                                    Collapsible Group Item #3
+                                    </a>
+                                </div>
+                                <div id="collapseThree" class="accordion-body collapse">
+                                    <div class="accordion-inner">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla iaculis mattis lorem.
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--/accordion -->
+{% endblock %}

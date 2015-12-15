@@ -1,0 +1,113 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %}Soc Dems Galway{% endblock %}
+
+{% block head %}
+{{ super() }}
+    <title>Soc Dems  - Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Le styles -->
+    <link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/flexslider.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+    <style type="text/css"> body { padding-top: 60px; } </style>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="{{ url_for('static', filename='ico/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ url_for('static', filename='ico/apple-touch-icon-144-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ url_for('static', filename='ico/apple-touch-icon-114-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ url_for('static', filename='ico/apple-touch-icon-72-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ url_for('static', filename='ico/apple-touch-icon-57-precomposed.png') }}">
+
+    <!-- Google Fonts call. Font Used Open Sans & Raleway -->
+    <link href="http://fonts.googleapis.com/css?family=Raleway:400,300" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
+
+<script type="text/javascript">
+ $(window).load(function(){
+    $('.flexslider').flexslider({
+        animation: "slide",
+        slideshow: true,
+        start: function(slider){ $('body').removeClass('loading'); }
+    });
+});
+</script>
+{% endblock %}
+
+{% block navbar %}
+    <div class="navbar-nav navbar-inverse navbar-fixed-top">
+        <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"><img src="{{ url_for('static', filename='img/logo30.png') }}" alt="">SocDems Galway Dashboard</a>
+        </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="{{ url_for('index') }}"><i class="fa fa-home"></i> Home</a></li>
+              <li><a href="tables.html"><i class="icon-th icon-white"></i> Tables</a></li>
+              <li><a href="{{ url_for('login') }}"><i class="icon-lock icon-white"></i> Login</a></li>
+              <li><a href="{{ url_for('user') }}"><i class="icon-user icon-white"></i> User</a></li>
+
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+
+    <div class="container">
+        <!-- FIRST ROW OF BLOCKS -->
+        <div class="row"> {% block first_row %}        {% endblock %}</div>
+         <!-- SECOND ROW OF BLOCKS -->
+        <div class="row"> {% block second_row %}        {% endblock %}</div>
+         <!-- THIRD ROW OF BLOCKS -->
+        <div class="row"> {% block third_row %}        {% endblock %}</div>
+    </div>
+</div> <!-- /container -->
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/lineandbars.js') }}"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/dash-charts.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/gauge.js') }}"></script>
+
+    <!-- NOTY JAVASCRIPT -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/noty/jquery.noty.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/noty/layouts/top.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/noty/layouts/topLeft.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/noty/layouts/topRight.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/noty/layouts/topCenter.js') }}"></script>
+
+    <!-- You can add more layouts if you want -->
+    <script type="text/javascript" src="{{ url_for('static', filename='js/noty/themes/default.js') }}"></script>
+    <!-- <script type="text/javascript" src="{{ url_for('static', filename='js/dash-noty.js') }}"></script> This is a Noty bubble when you init the theme-->
+    <script type="text/javascript" src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery.flexslider.js') }}" type="text/javascript"></script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{{ moment.include_moment() }}
+{% endblock %}
