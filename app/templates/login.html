@@ -91,7 +91,6 @@
 {% endblock %}
 
 {% block first_row %}
-
 <div class="container">
     <div class="row">
         <div class="col-lg-offset-4 col-lg-4" style="margin-top:100px">
@@ -99,6 +98,7 @@
             <img src="{{ url_for('static', filename='img/face80x80.jpg') }}" alt="" class="img-circle">
             <br><br>
             <form class="cmxform" id="signupForm" method="get" action="">
+            {{ form.hidden_tag() }}
                 <fieldset>
                     <p>
                         <input id="username" name="username" type="text" placeholder="Username">
@@ -111,5 +111,33 @@
         </div>
     </div>
 </div>
-
+{% endblock %}
+{% block second_row %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-offset-4 col-lg-4" style="margin-top:100px">
+            <div class="block-unit" style="text-align:center; padding:8px 8px 8px 8px;">
+            <img src="{{ url_for('static', filename='img/face80x80.jpg') }}" alt="" class="img-circle">
+            <br><br>
+            <form class="cmxform" name="login" method="post" action="">
+                {{ form.hidden_tag() }}
+                <fieldset>
+                    <p>
+                        Please enter your OpenID::<br/>
+                        {{ form.openid(size=80) }}<br/>
+                        {% for error in form.openid.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                        {% endfor %}<br>
+                        |{% for pr in providers %}
+                        <a href="javascript:set_openid('{{ pr.url }}', '{{ pr.name }}');">{{ pr.name }}</a> |
+                        {% endfor %}
+                    </p>
+                    <p>{{ form.remember_me }} Remember Me</p>
+                    <input class="submit btn-success btn btn-large" type="submit" value="Sign In">
+                </fieldset>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

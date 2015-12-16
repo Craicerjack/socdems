@@ -1,6 +1,6 @@
 from flask import Flask, render_template, session, redirect, url_for, flash
-
 from app import app
+from .forms import LoginForm
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -22,9 +22,15 @@ def index():
 def data():
     return render_template('data.html')
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    form = LoginForm()
+    if form.validate_on_submit():
+        flash('Login requested for OpenID="%s", remember_me=%s' %
+            (form.openid.data, str(form.remember_me.data)))
+        return redirect('/index')
+    return render_template('login.html', title='Log In', form=form,
+                            providers=app.config['OPENID_PROVIDERS'])
 
 @app.route('/user')
 def user():
